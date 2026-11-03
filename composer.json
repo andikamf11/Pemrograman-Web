@@ -1,0 +1,10 @@
+{
+  "name": "umm/app-kost",
+  "description": "Sistem Informasi Manajemen Kost Griya Mandiri - UTS Pemrograman Web",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
