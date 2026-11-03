@@ -9,6 +9,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Core\Router;
 use App\Controllers\KamarController;
+use App\Controllers\PenghuniController;
 
 // Inisialisasi session untuk flash message / notifikasi
 if (session_status() === PHP_SESSION_NONE) {
@@ -45,22 +46,14 @@ $router->post('/kamar/hapus', [KamarController::class, 'delete']);
 $router->get('/kamar/hapus/{id}', [KamarController::class, 'delete']);
 
 // ==========================================
-// Rute Placeholder Modul Anggota 2
+// Rute Modul Penghuni (Tugas Anggota 2)
 // ==========================================
-$router->get('/penghuni', function () {
-    $title = 'Data Penghuni Kost';
-    require_once __DIR__ . '/../views/layout/header.php';
-    ?>
-    <div class="card card-custom p-5 text-center my-4">
-        <h4 class="fw-semibold text-dark mb-2">Modul Data Penghuni</h4>
-        <p class="text-secondary small mb-3">Modul ini akan dikembangkan oleh <strong>Anggota 2</strong> (Check-in, Checkout, Riwayat).</p>
-        <div>
-            <a href="<?= BASE_URL ?>/kamar" class="btn btn-outline-primary btn-sm">Kembali ke Daftar Kamar</a>
-        </div>
-    </div>
-    <?php
-    require_once __DIR__ . '/../views/layout/footer.php';
-});
+$router->get('/penghuni', [PenghuniController::class, 'index']);
+$router->get('/penghuni/tambah', [PenghuniController::class, 'create']);
+$router->post('/penghuni/simpan', [PenghuniController::class, 'store']);
+$router->post('/penghuni/tambah', [PenghuniController::class, 'store']);
+$router->post('/penghuni/checkout/{id}', [PenghuniController::class, 'checkout']);
+$router->post('/penghuni/checkout', [PenghuniController::class, 'checkout']);
 
 // Jalankan Dispatcher
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
