@@ -83,6 +83,11 @@
                             </td>
                             <td class="text-end">
                                 <div class="d-inline-flex gap-1">
+                                    <?php if ($kamar['status'] === 'tersedia'): ?>
+                                        <a href="<?= BASE_URL ?>/penghuni/tambah?kamar_id=<?= $kamar['id'] ?>" class="btn btn-outline-primary btn-sm" title="Check-in penghuni baru ke kamar ini">
+                                            Check-in
+                                        </a>
+                                    <?php endif; ?>
                                     <a href="<?= BASE_URL ?>/kamar/edit/<?= $kamar['id'] ?>" class="btn btn-light btn-sm border text-secondary" title="Edit kamar">
                                         Edit
                                     </a>
