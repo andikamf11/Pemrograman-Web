@@ -32,6 +32,35 @@
     </div>
 </div>
 
+<!-- Form Filter & Pencarian Kamar (Tugas Anggota 3) -->
+<div class="card card-custom p-3 mb-4">
+    <form method="GET" action="<?= BASE_URL ?>/kamar" class="row g-2 align-items-center">
+        <div class="col-12 col-md-5">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text bg-light text-secondary border" style="font-size: 0.85rem;">🔍</span>
+                <input type="text" name="keyword" class="form-control" placeholder="Cari nomor kamar atau tipe..." value="<?= htmlspecialchars($keyword ?? '') ?>">
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <select name="status" class="form-select form-select-sm">
+                <option value="">-- Semua Status Ketersediaan --</option>
+                <option value="tersedia" <?= (isset($status) && $status === 'tersedia') ? 'selected' : '' ?>>Tersedia (Kosong)</option>
+                <option value="terisi" <?= (isset($status) && $status === 'terisi') ? 'selected' : '' ?>>Terisi (Ditempati)</option>
+            </select>
+        </div>
+        <div class="col-12 col-md-3 d-flex gap-2">
+            <button type="submit" class="btn btn-primary btn-sm px-3 flex-grow-1 shadow-none">
+                Filter
+            </button>
+            <?php if (!empty($keyword) || !empty($status)): ?>
+                <a href="<?= BASE_URL ?>/kamar" class="btn btn-light btn-sm border text-secondary px-3" title="Reset filter">
+                    Reset
+                </a>
+            <?php endif; ?>
+        </div>
+    </form>
+</div>
+
 <div class="card card-custom p-0 overflow-hidden">
     <div class="table-responsive">
         <table class="table table-hover table-custom mb-0">
@@ -50,10 +79,17 @@
                 <?php if (empty($kamars)): ?>
                     <tr>
                         <td colspan="7" class="text-center py-5 text-muted">
-                            <p class="mb-2">Belum ada data kamar yang tersimpan.</p>
-                            <a href="<?= BASE_URL ?>/kamar/tambah" class="btn btn-sm btn-outline-primary">
-                                Tambah Kamar Pertama
-                            </a>
+                            <?php if (!empty($keyword) || !empty($status)): ?>
+                                <p class="mb-2">Tidak ditemukan data kamar yang sesuai dengan kriteria filter.</p>
+                                <a href="<?= BASE_URL ?>/kamar" class="btn btn-sm btn-outline-secondary">
+                                    Reset Filter Pencarian
+                                </a>
+                            <?php else: ?>
+                                <p class="mb-2">Belum ada data kamar yang tersimpan.</p>
+                                <a href="<?= BASE_URL ?>/kamar/tambah" class="btn btn-sm btn-outline-primary">
+                                    Tambah Kamar Pertama
+                                </a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php else: ?>
