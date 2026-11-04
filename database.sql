@@ -1,13 +1,14 @@
 -- ========================================================
 -- Database Schema: db_kostan
--- Proyek: Sistem Informasi Manajemen Kamar & Penghuni Kost
+-- Proyek: Sistem Informasi Manajemen Kamar & Penghuni Kost (Kost Griya Mandiri)
+-- Modul: Anggota 1, Anggota 2, & Anggota 3
 -- ========================================================
 
 CREATE DATABASE IF NOT EXISTS `db_kostan` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `db_kostan`;
 
 -- --------------------------------------------------------
--- Struktur Tabel `kamar` (Dikerjakan oleh Anggota 1)
+-- 1. Struktur Tabel `kamar` (Dikerjakan oleh Anggota 1)
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `penghuni`;
 DROP TABLE IF EXISTS `kamar`;
@@ -23,17 +24,18 @@ CREATE TABLE `kamar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Data Awal (Dummy Data) Kamar untuk Pengujian
+-- Data Awal (Dummy Data) Kamar untuk Pengujian & Demo
 -- --------------------------------------------------------
-INSERT INTO `kamar` (`nomor`, `tipe`, `harga`, `fasilitas`, `status`) VALUES
-('101', 'Standard', 800000.00, 'Kasur busa single, lemari pakaian 1 pintu, kamar mandi luar, kipas angin, Wi-Fi', 'tersedia'),
-('102', 'Deluxe', 1200000.00, 'Kasur springbed single, lemari 2 pintu, kamar mandi dalam, AC, Wi-Fi 50 Mbps', 'terisi'),
-('103', 'Deluxe', 1250000.00, 'Kasur springbed queen, meja belajar & kursi, kamar mandi dalam, AC, Wi-Fi', 'tersedia'),
-('201', 'VIP', 1700000.00, 'Kasur king size, smart TV 32 inch, kulkas mini, water heater, AC, balkon jemuran', 'tersedia'),
-('202', 'Standard', 850000.00, 'Kasur single, lemari pakaian, jendela ventilasi luas, kamar mandi luar', 'tersedia');
+INSERT INTO `kamar` (`id`, `nomor`, `tipe`, `harga`, `fasilitas`, `status`) VALUES
+(1, '101', 'Standard', 800000.00, 'Kasur busa single, lemari pakaian 1 pintu, kamar mandi luar, kipas angin, Wi-Fi 50 Mbps', 'terisi'),
+(2, '102', 'Standard', 850000.00, 'Kasur single empuk, lemari pakaian 2 pintu, jendela ventilasi luas, kamar mandi luar, Wi-Fi', 'tersedia'),
+(3, '201', 'Deluxe', 1200000.00, 'Kasur springbed single, lemari 2 pintu, meja belajar, AC 1/2 PK, kamar mandi dalam, Wi-Fi', 'terisi'),
+(4, '202', 'Deluxe', 1250000.00, 'Kasur springbed queen, meja belajar & kursi ergonomis, kamar mandi dalam, AC, Wi-Fi', 'tersedia'),
+(5, '301', 'VIP', 1700000.00, 'Kasur king size, smart TV 32 inch, kulkas mini, water heater, AC 1 PK, balkon jemuran pribadi', 'terisi'),
+(6, '302', 'VIP', 1800000.00, 'Kasur king size, smart TV 43 inch, kulkas mini, water heater, AC 1 PK, pantry mini, balkon', 'tersedia');
 
 -- --------------------------------------------------------
--- Struktur Tabel `penghuni` (Dikerjakan oleh Anggota 2)
+-- 2. Struktur Tabel `penghuni` (Dikerjakan oleh Anggota 2)
 -- --------------------------------------------------------
 CREATE TABLE `penghuni` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -49,7 +51,10 @@ CREATE TABLE `penghuni` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Data Awal (Dummy Data) Penghuni untuk Pengujian
+-- Data Awal (Dummy Data) Penghuni untuk Pengujian & Demo
 -- --------------------------------------------------------
-INSERT INTO `penghuni` (`kamar_id`, `nama_lengkap`, `nik`, `no_hp`, `tgl_masuk`, `tgl_keluar`, `status_sewa`) VALUES
-(2, 'Ahmad Fauzi', '3507123456780001', '081234567890', '2026-01-15', NULL, 'aktif');
+INSERT INTO `penghuni` (`id`, `kamar_id`, `nama_lengkap`, `nik`, `no_hp`, `tgl_masuk`, `tgl_keluar`, `status_sewa`) VALUES
+(1, 1, 'Budi Santoso', '3201123456780002', '082198765432', '2026-01-10', NULL, 'aktif'),
+(2, 3, 'Ahmad Fauzi', '3507123456780001', '081234567890', '2026-01-15', NULL, 'aktif'),
+(3, 5, 'Siti Rahmawati', '3302123456780003', '085712341234', '2026-02-01', NULL, 'aktif'),
+(4, 2, 'Dimas Pratama', '3578123456780004', '081398761122', '2025-08-01', '2025-12-31', 'selesai');
