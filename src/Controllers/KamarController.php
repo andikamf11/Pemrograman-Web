@@ -28,14 +28,25 @@ class KamarController
     }
 
     /**
-     * Menampilkan daftar seluruh kamar
+     * Menampilkan daftar seluruh kamar dengan fitur pencarian dan filter status
+     * Sesuai Tugas Anggota 3 (Fitur Filter & Search)
      */
     public function index(): void
     {
-        $kamars = $this->kamarRepo->all();
+        $keyword = isset($_GET['keyword']) ? trim((string)$_GET['keyword']) : '';
+        $status = isset($_GET['status']) ? trim((string)$_GET['status']) : '';
+
+        if ($keyword !== '' || $status !== '') {
+            $kamars = $this->kamarRepo->search($keyword, $status);
+        } else {
+            $kamars = $this->kamarRepo->all();
+        }
+
         $this->render('kamar/index', [
             'title' => 'Daftar Kamar Kost - Griya Mandiri',
             'kamars' => $kamars,
+            'keyword' => $keyword,
+            'status' => $status,
         ]);
     }
 
@@ -84,6 +95,7 @@ class KamarController
 
         // Jika terdapat error validasi
         if (!empty($errors)) {
+            http_response_code(422);
             $_SESSION['flash_error'] = implode('<br>', $errors);
             $_SESSION['old_input'] = $_POST;
             $redirectUrl = (defined('BASE_URL') ? BASE_URL : '') . '/kamar/tambah';
@@ -167,6 +179,7 @@ class KamarController
         }
 
         if (!empty($errors)) {
+            http_response_code(422);
             $_SESSION['flash_error'] = implode('<br>', $errors);
             $redirectUrl = (defined('BASE_URL') ? BASE_URL : '') . '/kamar/edit/' . $kamarId;
             header("Location: {$redirectUrl}");

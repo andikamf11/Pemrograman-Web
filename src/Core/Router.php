@@ -76,6 +76,12 @@ class Router
 
         // 5. Tampilkan respon 404 jika rute tidak ditemukan
         http_response_code(404);
+        $error404View = __DIR__ . '/../../views/errors/404.php';
+        if (file_exists($error404View)) {
+            require $error404View;
+            return;
+        }
+
         echo '<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>404 Halaman Tidak Ditemukan</title>';
         echo '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">';
         echo '</head><body class="bg-light d-flex align-items-center justify-content-center vh-100 text-center">';

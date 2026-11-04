@@ -8,6 +8,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Core\Router;
+use App\Controllers\DashboardController;
 use App\Controllers\KamarController;
 use App\Controllers\PenghuniController;
 
@@ -24,9 +25,14 @@ define('BASE_URL', $baseUrl);
 $router = new Router();
 
 // ==========================================
+// Rute Modul Dashboard (Tugas Anggota 3)
+// ==========================================
+$router->get('/', [DashboardController::class, 'index']);
+$router->get('/dashboard', [DashboardController::class, 'index']);
+
+// ==========================================
 // Rute Modul Kamar (Tugas Anggota 1)
 // ==========================================
-$router->get('/', [KamarController::class, 'index']);
 $router->get('/kamar', [KamarController::class, 'index']);
 
 // Form tambah & simpan data kamar (PRG pattern)

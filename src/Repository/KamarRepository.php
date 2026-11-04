@@ -26,6 +26,33 @@ class KamarRepository
     }
 
     /**
+     * Mencari dan memfilter data kamar berdasarkan nomor/tipe dan status ketersediaan
+     * Sesuai Tugas Anggota 3 (Filter & Search)
+     */
+    public function search(?string $keyword = null, ?string $status = null): array
+    {
+        $sql = "SELECT * FROM kamar WHERE 1=1";
+        $params = [];
+
+        if ($keyword !== null && trim($keyword) !== '') {
+            $keyword = trim($keyword);
+            $sql .= " AND (nomor LIKE ? OR tipe LIKE ?)";
+            $params[] = "%{$keyword}%";
+            $params[] = "%{$keyword}%";
+        }
+
+        if ($status !== null && in_array($status, ['tersedia', 'terisi'], true)) {
+            $sql .= " AND status = ?";
+            $params[] = $status;
+        }
+
+        $sql .= " ORDER BY id DESC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
+
+    /**
      * Mengambil satu data kamar berdasarkan ID
      */
     public function find(int $id): ?array
