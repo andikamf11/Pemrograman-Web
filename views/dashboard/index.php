@@ -5,10 +5,10 @@
     </div>
     <div class="d-flex gap-2">
         <a href="<?= BASE_URL ?>/penghuni/tambah" class="btn btn-outline-primary btn-sm px-3 shadow-none">
-            + Check-in Penghuni
+            Check-in Penghuni
         </a>
         <a href="<?= BASE_URL ?>/kamar/tambah" class="btn btn-primary btn-sm px-3 shadow-none">
-            + Tambah Kamar Baru
+            Tambah Kamar Baru
         </a>
     </div>
 </div>
@@ -148,7 +148,7 @@
                                     </td>
                                     <td class="text-end">
                                         <a href="<?= BASE_URL ?>/penghuni/tambah?kamar_id=<?= $kamar['id'] ?>" class="btn btn-outline-primary btn-sm py-1 px-2" style="font-size: 0.75rem;">
-                                            + Check-in
+                                            Check-in
                                         </a>
                                     </td>
                                 </tr>

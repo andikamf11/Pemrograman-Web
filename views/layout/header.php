@@ -121,7 +121,7 @@ $isDashboard = ($requestPath === '/' || $requestPath === '/dashboard' || (!$isPe
 <nav class="navbar navbar-expand-lg navbar-custom mb-4">
     <div class="container">
         <a class="navbar-brand" href="<?= defined('BASE_URL') ? BASE_URL : '' ?>/">
-            🏠 Kost Griya Mandiri
+            Kost Griya Mandiri
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -131,8 +131,8 @@ $isDashboard = ($requestPath === '/' || $requestPath === '/dashboard' || (!$isPe
                 <a class="nav-link px-3 <?= $isDashboard ? 'active fw-semibold text-primary' : '' ?>" href="<?= defined('BASE_URL') ? BASE_URL : '' ?>/">Dashboard</a>
                 <a class="nav-link px-3 <?= $isKamar ? 'active fw-semibold text-primary' : '' ?>" href="<?= defined('BASE_URL') ? BASE_URL : '' ?>/kamar">Daftar Kamar</a>
                 <a class="nav-link px-3 <?= $isPenghuni ? 'active fw-semibold text-primary' : '' ?>" href="<?= defined('BASE_URL') ? BASE_URL : '' ?>/penghuni">Data Penghuni</a>
-                <a class="btn btn-outline-primary btn-sm ms-lg-2" href="<?= defined('BASE_URL') ? BASE_URL : '' ?>/penghuni/tambah">+ Check-in</a>
-                <a class="btn btn-primary btn-sm ms-1" href="<?= defined('BASE_URL') ? BASE_URL : '' ?>/kamar/tambah">+ Tambah Kamar</a>
+                <a class="btn btn-outline-primary btn-sm ms-lg-2" href="<?= defined('BASE_URL') ? BASE_URL : '' ?>/penghuni/tambah">Check-in</a>
+                <a class="btn btn-primary btn-sm ms-1" href="<?= defined('BASE_URL') ? BASE_URL : '' ?>/kamar/tambah">Tambah Kamar</a>
             </div>
         </div>
     </div>

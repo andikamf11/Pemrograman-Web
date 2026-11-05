@@ -1,9 +1,6 @@
 <?php if (!empty($_SESSION['flash_success'])): ?>
     <div class="alert alert-success alert-dismissible fade show border-0 mb-4" role="alert" style="background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0 !important; border-radius: 6px;">
-        <div class="d-flex align-items-center">
-            <span class="me-2" style="font-size: 1.1rem;">✓</span>
-            <div><?= $_SESSION['flash_success'] ?></div>
-        </div>
+        <div><?= $_SESSION['flash_success'] ?></div>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
     </div>
     <?php unset($_SESSION['flash_success']); ?>
@@ -11,10 +8,7 @@
 
 <?php if (!empty($_SESSION['flash_error'])): ?>
     <div class="alert alert-danger alert-dismissible fade show border-0 mb-4" role="alert" style="background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca !important; border-radius: 6px;">
-        <div class="d-flex align-items-center">
-            <span class="me-2" style="font-size: 1.1rem;">⚠</span>
-            <div><?= $_SESSION['flash_error'] ?></div>
-        </div>
+        <div><?= $_SESSION['flash_error'] ?></div>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
     </div>
     <?php unset($_SESSION['flash_error']); ?>
@@ -27,23 +21,20 @@
     </div>
     <div>
         <a href="<?= BASE_URL ?>/kamar/tambah" class="btn btn-primary btn-sm px-3 shadow-none">
-            + Tambah Kamar Baru
+            Tambah Kamar Baru
         </a>
     </div>
 </div>
 
-<!-- Form Filter & Pencarian Kamar (Tugas Anggota 3) -->
+<!-- Form Filter & Pencarian Kamar -->
 <div class="card card-custom p-3 mb-4">
     <form method="GET" action="<?= BASE_URL ?>/kamar" class="row g-2 align-items-center">
         <div class="col-12 col-md-5">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text bg-light text-secondary border" style="font-size: 0.85rem;">🔍</span>
-                <input type="text" name="keyword" class="form-control" placeholder="Cari nomor kamar atau tipe..." value="<?= htmlspecialchars($keyword ?? '') ?>">
-            </div>
+            <input type="text" name="keyword" class="form-control" placeholder="Cari nomor kamar atau tipe..." value="<?= htmlspecialchars($keyword ?? '') ?>">
         </div>
         <div class="col-12 col-md-4">
             <select name="status" class="form-select form-select-sm">
-                <option value="">-- Semua Status Ketersediaan --</option>
+                <option value="">Semua Status Ketersediaan</option>
                 <option value="tersedia" <?= (isset($status) && $status === 'tersedia') ? 'selected' : '' ?>>Tersedia (Kosong)</option>
                 <option value="terisi" <?= (isset($status) && $status === 'terisi') ? 'selected' : '' ?>>Terisi (Ditempati)</option>
             </select>

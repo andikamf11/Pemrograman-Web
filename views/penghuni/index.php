@@ -1,9 +1,6 @@
 <?php if (!empty($_SESSION['flash_success'])): ?>
     <div class="alert alert-success alert-dismissible fade show border-0 mb-4" role="alert" style="background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0 !important; border-radius: 6px;">
-        <div class="d-flex align-items-center">
-            <span class="me-2" style="font-size: 1.1rem;">✓</span>
-            <div><?= $_SESSION['flash_success'] ?></div>
-        </div>
+        <div><?= $_SESSION['flash_success'] ?></div>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
     </div>
     <?php unset($_SESSION['flash_success']); ?>
@@ -11,10 +8,7 @@
 
 <?php if (!empty($_SESSION['flash_error'])): ?>
     <div class="alert alert-danger alert-dismissible fade show border-0 mb-4" role="alert" style="background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca !important; border-radius: 6px;">
-        <div class="d-flex align-items-center">
-            <span class="me-2" style="font-size: 1.1rem;">⚠</span>
-            <div><?= $_SESSION['flash_error'] ?></div>
-        </div>
+        <div><?= $_SESSION['flash_error'] ?></div>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
     </div>
     <?php unset($_SESSION['flash_error']); ?>
@@ -27,7 +21,7 @@
     </div>
     <div>
         <a href="<?= BASE_URL ?>/penghuni/tambah" class="btn btn-primary btn-sm px-3 shadow-none">
-            + Check-in Penghuni Baru
+            Check-in Penghuni Baru
         </a>
     </div>
 </div>
@@ -104,4 +98,3 @@
         </table>
     </div>
 </div>
-

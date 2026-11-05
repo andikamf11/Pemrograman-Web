@@ -9,10 +9,7 @@
     <div class="col-lg-7">
         <?php if (!empty($_SESSION['flash_error'])): ?>
             <div class="alert alert-danger alert-dismissible fade show border-0 mb-4" role="alert" style="background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca !important; border-radius: 6px;">
-                <div class="d-flex align-items-center">
-                    <span class="me-2" style="font-size: 1.1rem;">⚠</span>
-                    <div><?= $_SESSION['flash_error'] ?></div>
-                </div>
+                <div><?= $_SESSION['flash_error'] ?></div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
             </div>
             <?php unset($_SESSION['flash_error']); ?>
@@ -44,16 +41,16 @@
 
                 <div class="mb-3">
                     <label for="harga" class="form-label small fw-medium text-dark">Harga Sewa per Bulan (Rp) <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="harga" name="harga" value="<?= htmlspecialchars((string)(int)$kamar['harga']) ?>" min="1" step="1000" required>
+                    <input type="number" class="form-control" id="harga" name="harga" value="<?= (int)$kamar['harga'] ?>" min="1" step="1000" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="status" class="form-label small fw-medium text-dark">Status Ketersediaan</label>
-                    <select class="form-select" id="status" name="status">
-                        <option value="tersedia" <?= ($kamar['status'] === 'tersedia') ? 'selected' : '' ?>>Tersedia</option>
-                        <option value="terisi" <?= ($kamar['status'] === 'terisi') ? 'selected' : '' ?>>Terisi</option>
+                    <label for="status" class="form-label small fw-medium text-dark">Status Kamar <span class="text-danger">*</span></label>
+                    <select class="form-select" id="status" name="status" required>
+                        <option value="tersedia" <?= ($kamar['status'] === 'tersedia') ? 'selected' : '' ?>>Tersedia (Kosong)</option>
+                        <option value="terisi" <?= ($kamar['status'] === 'terisi') ? 'selected' : '' ?>>Terisi (Ditempati)</option>
                     </select>
-                    <div class="form-text small text-muted">Catatan: Status kamar juga diperbarui secara otomatis saat modul penghuni melakukan check-in / checkout.</div>
+                    <div class="form-text small text-muted">Status kamar akan otomatis berganti ke 'terisi' saat proses check-in penghuni.</div>
                 </div>
 
                 <div class="mb-4">
@@ -62,8 +59,8 @@
                 </div>
 
                 <div class="d-flex justify-content-end gap-2 pt-3 border-top">
-                    <a href="<?= BASE_URL ?>/kamar" class="btn btn-outline-secondary">Kembali</a>
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    <a href="<?= BASE_URL ?>/kamar" class="btn btn-outline-secondary">Batal</a>
+                    <button type="submit" class="btn btn-primary px-4">Simpan Perubahan</button>
                 </div>
             </form>
         </div>
