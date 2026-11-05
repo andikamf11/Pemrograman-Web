@@ -9,10 +9,7 @@
     <div class="col-lg-7">
         <?php if (!empty($_SESSION['flash_error'])): ?>
             <div class="alert alert-danger alert-dismissible fade show border-0 mb-4" role="alert" style="background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca !important; border-radius: 6px;">
-                <div class="d-flex align-items-center">
-                    <span class="me-2" style="font-size: 1.1rem;">⚠</span>
-                    <div><?= $_SESSION['flash_error'] ?></div>
-                </div>
+                <div><?= $_SESSION['flash_error'] ?></div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
             </div>
             <?php unset($_SESSION['flash_error']); ?>
@@ -49,13 +46,13 @@
 
                 <div class="mb-4">
                     <label for="fasilitas" class="form-label small fw-medium text-dark">Fasilitas Kamar</label>
-                    <textarea class="form-control" id="fasilitas" name="fasilitas" rows="3" placeholder="Contoh: Kasur springbed, lemari pakaian 2 pintu, kamar mandi dalam, AC, Wi-Fi"><?= htmlspecialchars($old['fasilitas'] ?? '') ?></textarea>
-                    <div class="form-text small text-muted">Daftar fasilitas yang disediakan di dalam kamar ini.</div>
+                    <textarea class="form-control" id="fasilitas" name="fasilitas" rows="3" placeholder="Misal: Kasur busa, lemari pakaian, AC, kamar mandi dalam, Wi-Fi"><?= htmlspecialchars($old['fasilitas'] ?? '') ?></textarea>
+                    <div class="form-text small text-muted">Rincian inventaris atau fasilitas yang disediakan dalam unit kamar.</div>
                 </div>
 
                 <div class="d-flex justify-content-end gap-2 pt-3 border-top">
                     <a href="<?= BASE_URL ?>/kamar" class="btn btn-outline-secondary">Batal</a>
-                    <button type="submit" class="btn btn-primary">Simpan Kamar</button>
+                    <button type="submit" class="btn btn-primary px-4">Simpan Kamar</button>
                 </div>
             </form>
         </div>

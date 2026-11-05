@@ -93,7 +93,7 @@ $backUrl = $redirectBack ?? ($_SERVER['HTTP_REFERER'] ?? $baseUrl . '/');
 
         <div class="d-flex flex-wrap justify-content-center gap-2">
             <a href="<?= htmlspecialchars($backUrl) ?>" class="btn btn-primary btn-custom">
-                ← Kembali Perbaiki Form
+                Kembali Perbaiki Form
             </a>
             <a href="<?= $baseUrl ?>/" class="btn btn-outline-secondary btn-custom">
                 Kembali ke Dashboard

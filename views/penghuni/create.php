@@ -9,10 +9,7 @@
     <div class="col-lg-8">
         <?php if (!empty($_SESSION['flash_error'])): ?>
             <div class="alert alert-danger alert-dismissible fade show border-0 mb-4" role="alert" style="background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca !important; border-radius: 6px;">
-                <div class="d-flex align-items-center">
-                    <span class="me-2" style="font-size: 1.1rem;">⚠</span>
-                    <div><?= $_SESSION['flash_error'] ?></div>
-                </div>
+                <div><?= $_SESSION['flash_error'] ?></div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
             </div>
             <?php unset($_SESSION['flash_error']); ?>
@@ -26,17 +23,14 @@
 
             <?php if (empty($availableRooms)): ?>
                 <div class="alert alert-warning border-0 mb-4" style="background-color: #fffbeb; color: #92400e; border: 1px solid #fde68a !important; border-radius: 6px;">
-                    <div class="d-flex align-items-center">
-                        <span class="me-2" style="font-size: 1.1rem;">ℹ</span>
-                        <div>
-                            <strong>Tidak Ada Kamar Tersedia</strong><br>
-                            Saat ini seluruh kamar kost telah berstatus <em>Terisi</em>. Anda dapat menambahkan master kamar baru terlebih dahulu atau melakukan checkout pada kamar yang sudah ada.
-                        </div>
+                    <div>
+                        <strong>Tidak Ada Kamar Tersedia</strong><br>
+                        Saat ini seluruh kamar kost telah berstatus <em>Terisi</em>. Anda dapat menambahkan master kamar baru terlebih dahulu atau melakukan checkout pada kamar yang sudah ada.
                     </div>
                 </div>
                 <div class="d-flex justify-content-end gap-2 pt-3 border-top">
                     <a href="<?= BASE_URL ?>/penghuni" class="btn btn-outline-secondary">Kembali</a>
-                    <a href="<?= BASE_URL ?>/kamar/tambah" class="btn btn-primary">+ Tambah Kamar Baru</a>
+                    <a href="<?= BASE_URL ?>/kamar/tambah" class="btn btn-primary">Tambah Kamar Baru</a>
                 </div>
             <?php else: ?>
                 <form method="POST" action="<?= BASE_URL ?>/penghuni/simpan">
@@ -59,35 +53,32 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="kamar_id" class="form-label small fw-medium text-dark">Pilih Kamar Kost <span class="text-danger">*</span></label>
-                        <select class="form-select" id="kamar_id" name="kamar_id" required>
-                            <option value="">-- Pilih Kamar yang Tersedia --</option>
-                            <?php foreach ($availableRooms as $room): ?>
-                                <?php 
-                                    $isSelected = (isset($old['kamar_id']) && (int)$old['kamar_id'] === (int)$room['id']);
-                                ?>
-                                <option value="<?= $room['id'] ?>" <?= $isSelected ? 'selected' : '' ?>>
-                                    Kamar <?= htmlspecialchars($room['nomor']) ?> - Tipe <?= htmlspecialchars($room['tipe']) ?> (Rp <?= number_format((float)$room['harga'], 0, ',', '.') ?> / bln)
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                        <div class="form-text small text-muted">Hanya kamar dengan status 'Tersedia' yang dapat dipilih.</div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="kamar_id" class="form-label small fw-medium text-dark">Pilih Kamar Kost <span class="text-danger">*</span></label>
+                            <select class="form-select" id="kamar_id" name="kamar_id" required>
+                                <option value="">-- Pilih Kamar Tersedia --</option>
+                                <?php foreach ($availableRooms as $room): ?>
+                                    <option value="<?= $room['id'] ?>" <?= ((isset($selectedKamarId) && (int)$selectedKamarId === (int)$room['id']) || (isset($old['kamar_id']) && (int)$old['kamar_id'] === (int)$room['id'])) ? 'selected' : '' ?>>
+                                        Kamar <?= htmlspecialchars($room['nomor']) ?> - Tipe <?= htmlspecialchars($room['tipe']) ?> (Rp <?= number_format((float)$room['harga'], 0, ',', '.') ?>/bln)
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <div class="form-text small text-muted">Hanya menampilkan kamar yang berstatus kosong/tersedia.</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="tgl_masuk" class="form-label small fw-medium text-dark">Tanggal Mulai Masuk Sewa <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" id="tgl_masuk" name="tgl_masuk" value="<?= htmlspecialchars($old['tgl_masuk'] ?? date('Y-m-d')) ?>" required>
+                            <div class="form-text small text-muted">Tanggal awal penghuni mulai menempati kamar.</div>
+                        </div>
                     </div>
 
-                    <div class="mb-4">
-                        <label for="tgl_masuk" class="form-label small fw-medium text-dark">Tanggal Masuk (Check-in) <span class="text-danger">*</span></label>
-                        <input type="date" class="form-control" id="tgl_masuk" name="tgl_masuk" value="<?= htmlspecialchars($old['tgl_masuk'] ?? date('Y-m-d')) ?>" required>
-                        <div class="form-text small text-muted">Tanggal resmi penghuni mulai menempati kamar kost.</div>
-                    </div>
-
-                    <div class="d-flex justify-content-end gap-2 pt-3 border-top">
+                    <div class="d-flex justify-content-end gap-2 pt-3 border-top mt-4">
                         <a href="<?= BASE_URL ?>/penghuni" class="btn btn-outline-secondary">Batal</a>
-                        <button type="submit" class="btn btn-primary">Simpan &amp; Check-in</button>
+                        <button type="submit" class="btn btn-primary px-4">Proses Check-in</button>
                     </div>
                 </form>
             <?php endif; ?>
         </div>
     </div>
 </div>
-
