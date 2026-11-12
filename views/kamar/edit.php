@@ -41,7 +41,8 @@
 
                 <div class="mb-3">
                     <label for="harga" class="form-label small fw-medium text-dark">Harga Sewa per Bulan (Rp) <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="harga" name="harga" value="<?= (int)$kamar['harga'] ?>" min="1" step="1000" required>
+                    <input type="number" class="form-control" id="harga" name="harga" value="<?= (int)$kamar['harga'] ?>" min="0" step="1000" required>
+                    <div class="form-text small text-muted">Nominal sewa berupa angka (kelipatan ribuan).</div>
                 </div>
 
                 <div class="mb-3">

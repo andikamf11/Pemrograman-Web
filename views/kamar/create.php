@@ -40,7 +40,7 @@
 
                 <div class="mb-3">
                     <label for="harga" class="form-label small fw-medium text-dark">Harga Sewa per Bulan (Rp) <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="harga" name="harga" value="<?= htmlspecialchars($old['harga'] ?? '') ?>" placeholder="Misal: 850000" min="1" step="1000" required>
+                    <input type="number" class="form-control" id="harga" name="harga" value="<?= htmlspecialchars($old['harga'] ?? '') ?>" placeholder="Misal: 850000" min="0" step="1000" required>
                     <div class="form-text small text-muted">Nominal sewa wajib berupa angka positif tanpa titik atau koma.</div>
                 </div>
 
